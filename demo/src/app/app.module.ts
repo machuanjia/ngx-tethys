@@ -21,6 +21,7 @@ import { CustomAvatarService } from './components/+avatar/custom-avatar.service'
 import { CustomEditorService } from './components/+editor/custom-editor.service';
 import { ThyMarkdownParserService } from '../../../src/directive';
 import { HighlightModule } from 'ngx-highlightjs';
+import { EditorModule } from '../../../packages/editor/src/lib/editor.module';
 
 import xml from 'highlight.js/lib/languages/xml';
 import scss from 'highlight.js/lib/languages/scss';
@@ -40,6 +41,7 @@ export function hljsLanguages() {
         BrowserModule,
         FormsModule,
         NgxTethysModule,
+        EditorModule.forRoot(),
         RouterModule.forRoot(appRoutes, {
             useHash: true
         }),

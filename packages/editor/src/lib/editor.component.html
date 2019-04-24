@@ -1,0 +1,7 @@
+<ng-container *ngIf="toolbarPosition === 'bottom'">
+  <div #editor></div>
+</ng-container>
+<ng-content select="[quill-editor-toolbar]"></ng-content>
+<ng-container *ngIf="toolbarPosition === 'top'">
+  <div #editor></div>
+</ng-container>

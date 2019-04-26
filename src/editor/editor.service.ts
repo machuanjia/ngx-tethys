@@ -1,32 +1,5 @@
 import { Injectable, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
-import { thyEditorConstant } from './editor.constant';
-import { helpers } from '../util';
-export interface ThyEditorConfig {
-    type?: string;
-    placeholder?: string;
-    uploadImg?: {
-        multiple?: boolean;
-        acceptType?: string | string[];
-    };
-}
-
-export interface ThyEditorOptions {
-    placeholder: string;
-    fontSize: string;
-    theme: string;
-    maxHeight: number;
-    isHeightFull: boolean;
-    className: string;
-    autofocus: boolean;
-    type: string;
-    locale: string;
-    hideButtons: string[];
-    additionalButtons: string[];
-    replaceButtons: string[];
-    extendButtons: string[];
-    uploadImgMultiple: boolean;
-    uploadImgAcceptType: string | string[];
-}
+import { thyEditorConstant, thyEditorPattern, ThyEditorOptions, ThyEditorConfig } from './editor.constant';
 @Injectable()
 export class ThyEditorService implements OnInit, OnDestroy {
     public options: ThyEditorOptions = {
@@ -44,7 +17,8 @@ export class ThyEditorService implements OnInit, OnDestroy {
         replaceButtons: [],
         extendButtons: [],
         uploadImgMultiple: true,
-        uploadImgAcceptType: ['.gif', '.jpeg', '.png']
+        uploadImgAcceptType: ['.gif', '.jpeg', '.png'],
+        pattern: thyEditorPattern.markdown
     };
     // public hideButtons: any = []; // 要不显示的图标[]
     // public additionalButtons: any = []; // 扩展的图标 {title:'扩展',className:'fa fa-music',type:'custom',action:musicFn,before:2}

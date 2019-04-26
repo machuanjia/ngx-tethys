@@ -10,7 +10,7 @@ export const CONFIGRATION_ALL = {
         [{ size: ['small', false, 'large', 'huge'] }],
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
         [{ color: [] }, { background: [] }],
-        [{ font: [] }],
+        // [{ font: [] }],
         [{ align: [] }],
         ['clean'],
         ['link', 'emoji', 'image', 'video']

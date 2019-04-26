@@ -10,11 +10,14 @@ import {
     EventEmitter,
     OnDestroy,
     HostListener,
-    ViewChild
+    ViewChild,
+    AfterContentInit
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ThyEditorService, ThyEditorConfig } from './editor.service';
+import { ThyEditorService } from './editor.service';
 import { ThyEditorLinkModuleService } from './editor-linkmodule.service';
+import { thyEditorPattern, ThyEditorConfig } from './editor.constant';
+import { ThyEditorRichService } from './editor-rich.service';
 @Component({
     selector: 'thy-editor',
     templateUrl: './editor.component.html',
@@ -24,10 +27,11 @@ import { ThyEditorLinkModuleService } from './editor-linkmodule.service';
             useExisting: forwardRef(() => ThyEditorComponent),
             multi: true
         },
-        ThyEditorService
+        ThyEditorService,
+        ThyEditorRichService
     ]
 })
-export class ThyEditorComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class ThyEditorComponent implements OnInit, AfterContentInit, ControlValueAccessor, OnDestroy {
     public model: any;
 
     public options: ThyEditorConfig;
@@ -48,16 +52,22 @@ export class ThyEditorComponent implements OnInit, ControlValueAccessor, OnDestr
 
     public value: String = '';
 
+    public isMarkdown = true;
+
     constructor(
         private elementRef: ElementRef,
         private renderer: Renderer2,
         public thyEditorService: ThyEditorService,
+        public thyEditorRichService: ThyEditorRichService,
         public thyEditorLinkModuleService: ThyEditorLinkModuleService
     ) {}
 
     @HostListener('paste', ['$event'])
     paste(e: any) {
         e.stopPropagation();
+        if (!this.isMarkdown) {
+            return;
+        }
         const $files = [];
         const theClipboardData = e.clipboardData;
         if (!theClipboardData.items) {
@@ -104,11 +114,17 @@ export class ThyEditorComponent implements OnInit, ControlValueAccessor, OnDestr
 
     @HostListener('mouseenter', ['$event'])
     mouseenter(e: any) {
+        if (!this.isMarkdown) {
+            return;
+        }
         this.thyEditorService.focusEditor();
     }
 
     @HostListener('mouseleave', ['$event'])
     mouseleave(e: any) {
+        if (!this.isMarkdown) {
+            return;
+        }
         const isHasActive = this.hasParent(document.activeElement, this.editorWrap.nativeElement);
         if (!isHasActive) {
             this.thyEditorService.blurEditor();
@@ -133,7 +149,7 @@ export class ThyEditorComponent implements OnInit, ControlValueAccessor, OnDestr
 
     writeValue(value: any) {
         this.model = value;
-        if (this.model) {
+        if (this.model && this.isMarkdown) {
             setTimeout(() => {
                 this.thyEditorService.setTextareaHeight();
             });
@@ -204,9 +220,22 @@ export class ThyEditorComponent implements OnInit, ControlValueAccessor, OnDestr
     }
 
     ngOnInit(): void {
-        this.thyEditorService.initEditor(this.config, this.elementRef, this.editorWrap);
-        this._thyFullClass = this.thyEditorService.options.isHeightFull;
+        if (this.config) {
+            this.isMarkdown = !this.config.pattern || this.config.pattern === thyEditorPattern.markdown;
+            if (this.isMarkdown) {
+                setTimeout(() => {
+                    this.thyEditorService.initEditor(this.config, this.elementRef, this.editorWrap);
+                    this._thyFullClass = this.thyEditorService.options.isHeightFull;
+                });
+            } else {
+                setTimeout(() => {
+                    this.thyEditorRichService.initEditor(this.config, this.elementRef);
+                });
+            }
+        }
     }
+
+    ngAfterContentInit() {}
 
     ngOnDestroy() {
         this.thyEditorService.clear();

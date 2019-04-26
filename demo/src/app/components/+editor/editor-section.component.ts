@@ -4,17 +4,17 @@ import { Component, TemplateRef, OnInit } from '@angular/core';
     templateUrl: './editor-section.component.html'
 })
 export class DemoEditorSectionComponent implements OnInit {
-
     public value = ' :dizzy: :frowning: ';
 
     public config = {
         type: 'simple',
-        placeholder:'这个是自定义的placeholder',
-        uploadImg:{
+        placeholder: '这个是自定义的placeholder',
+        uploadImg: {
             multiple: true,
-            acceptType:['.gif','.jpeg']
-        }
-};
+            acceptType: ['.gif', '.jpeg']
+        },
+        pattern: 2 // 1 | 2
+    };
 
     // public thyMarkdownParserConfig = {
     //     emoji_style: 2,
@@ -22,11 +22,7 @@ export class DemoEditorSectionComponent implements OnInit {
     //     cdnRoot: 'http://www.baidu.com'
     // };
 
-    constructor(
-    ) {
-    }
+    constructor() {}
 
-    ngOnInit() {
-
-    }
+    ngOnInit() {}
 }

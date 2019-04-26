@@ -1,4 +1,4 @@
-<div #editorWrap class="thy-editor thy-editor-{{ thyEditorService.options.type }} {{ className }}">
+<div #editorWrap *ngIf="isMarkdown" class="thy-editor thy-editor-{{ thyEditorService.options.type }} {{ className }}">
   <div class="thy-editor-toobar">
     <div class="noselect">
       <ul class="wtEditorToolBarUl">
@@ -132,3 +132,6 @@
     </div>
   </div>
 </div>
+<ng-container *ngIf="!isMarkdown">
+  <ngx-editor [(ngModel)]="model" [type]="'all'" (ngModelChange)="changeValue($event)"></ngx-editor>
+</ng-container>

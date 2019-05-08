@@ -133,5 +133,10 @@
   </div>
 </div>
 <ng-container *ngIf="!isMarkdown">
-  <ngx-editor [(ngModel)]="model" [type]="'all'" (ngModelChange)="changeValue($event)"></ngx-editor>
+  <ngx-editor
+    [(ngModel)]="model"
+    [type]="thyEditorRichService.type"
+    [placeholder]="thyEditorRichService.placeholder"
+    (ngModelChange)="changeValue($event)"
+  ></ngx-editor>
 </ng-container>

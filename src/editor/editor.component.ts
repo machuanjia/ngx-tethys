@@ -171,7 +171,9 @@ export class ThyEditorComponent implements OnInit, AfterContentInit, ControlValu
     changeValue(event: Event) {
         this.model = event;
         this.onModelChange(this.model);
-        this.thyEditorService.setTextareaHeight();
+        if (this.isMarkdown) {
+            this.thyEditorService.setTextareaHeight();
+        }
     }
 
     insertTable() {

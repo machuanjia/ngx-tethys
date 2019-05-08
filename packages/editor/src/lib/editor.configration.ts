@@ -13,7 +13,7 @@ export const CONFIGRATION_ALL = {
         // [{ font: [] }],
         [{ align: [] }],
         ['clean'],
-        ['link', 'emoji', 'image', 'video']
+        ['link', 'emoji', 'image']
     ]
 };
 

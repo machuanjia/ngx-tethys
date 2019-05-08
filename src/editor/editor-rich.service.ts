@@ -4,6 +4,7 @@ import { thyEditorType, ThyEditorConfig } from './editor.constant';
 @Injectable()
 export class ThyEditorRichService implements OnInit, OnDestroy {
     public type: string = thyEditorType.simple;
+    public placeholder: string;
 
     constructor() {}
 
@@ -15,9 +16,8 @@ export class ThyEditorRichService implements OnInit, OnDestroy {
 
     initEditor(config: ThyEditorConfig, elementRef: any) {
         if (config) {
-            if (config.type) {
-                this.type = config.type;
-            }
+            this.type = config.type;
+            this.placeholder = config.placeholder;
         }
     }
 

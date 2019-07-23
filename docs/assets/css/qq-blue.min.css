@@ -82,14 +82,16 @@ a.link-secondary:hover {
 .btn-primary:disabled {
     color: #cacaca;
     background-color: #f3f3f3;
-    border-color: #f3f3f3;
+    border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-primary.disabled:hover,
 .btn-primary:disabled:hover {
     color: #cacaca;
     background-color: #f3f3f3;
-    border-color: #f3f3f3;
+    border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-primary:hover {
@@ -110,6 +112,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-outline-primary.disabled:hover,
@@ -117,6 +120,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active,
@@ -140,6 +144,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-outline-default.disabled:hover,
@@ -147,6 +152,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-outline-default:not(:disabled):not(.disabled).active,
@@ -337,6 +343,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-group-outline-primary > .btn.disabled:hover,
@@ -344,6 +351,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-group-outline-primary > .btn:not(:disabled):not(.disabled).active,
@@ -367,6 +375,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-group-outline-default > .btn.disabled:hover,
@@ -374,6 +383,7 @@ a.link-secondary:hover {
     color: #cacaca;
     background-color: #f3f3f3;
     border-color: #ddd;
+    border: none;
     box-shadow: none;
 }
 .btn-group-outline-default > .btn:not(:disabled):not(.disabled).active,
@@ -902,8 +912,7 @@ input[type='radio']:after {
     color: #2dbcff;
     text-decoration: none;
 }
-.nav-secondary-divider .nav-link .thy-icon,
-.nav-secondary-divider .nav-link i {
+.nav-secondary-divider .nav-link .wtf {
     margin-right: 0.3125rem;
 }
 .nav-thirdly .nav-link {
@@ -928,8 +937,7 @@ input[type='radio']:after {
     color: #2dbcff;
     text-decoration: none;
 }
-.nav-thirdly .nav-link .thy-icon,
-.nav-thirdly .nav-link i {
+.nav-thirdly .nav-link .wtf {
     margin-right: 0.3125rem;
 }
 .thy-nav--vertical .nav-link {
@@ -974,10 +982,8 @@ input[type='radio']:after {
 .thy-switch-danger > .thy-switch-input:checked ~ .thy-switch-label {
     background: #ff5b57 !important;
 }
-.thy-property-operation:hover .btn-icon-circle.border-thick:not(:hover):not(.invalid).circle-dashed .thy-icon,
 .thy-property-operation:hover .btn-icon-circle.border-thick:not(:hover):not(.invalid).circle-dashed .wtf,
-.thy-property-operation:hover .btn-icon-circle.border-thick:not(:hover):not(.invalid).circle-dashed i,
-.thy-property-operation:hover .btn-icon-circle.border-thick:not(:hover):not(.invalid).circle-dashed thy-icon {
+.thy-property-operation:hover .btn-icon-circle.border-thick:not(:hover):not(.invalid).circle-dashed i {
     color: #2dbcff;
     border-color: #2dbcff;
 }
@@ -1121,12 +1127,6 @@ input[type='radio']:after {
 .thy-menu .thy-menu-item .thy-menu-item-action {
     color: #aaa;
 }
-.thy-menu .thy-menu-item.active .thy-menu-item-content .thy-menu-item-icon {
-    color: #2dbcff;
-}
-.thy-menu .thy-menu-item.active .thy-menu-item-content .thy-menu-item-name {
-    color: #2dbcff;
-}
 .thy-menu .thy-menu-group .thy-menu-group-header:hover {
     box-shadow: 0 0 8px 2px #eee;
 }
@@ -1161,12 +1161,5 @@ input[type='radio']:after {
     border-left-width: 2px;
 }
 .thy-alert-primary-week .thy-alert-icon {
-    color: #2dbcff;
-}
-.thy-tree-node-wrapper.active {
-    background: rgba(45, 188, 255, 0.1);
-    color: #2dbcff;
-}
-.thy-tree-node-wrapper.active .thy-tree-node-content .thy-tree-node-icon {
     color: #2dbcff;
 }

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, OnInit, Input, Output, EventEmitter, NgZone } from '@angular/core';
 import { ThyMarkdownParserService } from './thy-markdown-parser.service';
 import { $, liteMarked, mermaid, katex } from '../typings';
 
@@ -58,7 +58,11 @@ export class ThyMarkdownParser implements OnInit {
         isImgPreview: true
     };
 
-    constructor(private elementRef: ElementRef, private thyMarkdownParserService: ThyMarkdownParserService) {}
+    constructor(
+        private elementRef: ElementRef,
+        private zone: NgZone,
+        private thyMarkdownParserService: ThyMarkdownParserService
+    ) {}
 
     initGantt() {
         if (mermaid) {
@@ -224,40 +228,42 @@ export class ThyMarkdownParser implements OnInit {
         setTimeout(() => {
             this.parseMermaid();
         }, 100);
-        this.elementRef.nativeElement.innerHTML = _value;
-        $(this.elementRef.nativeElement)
-            .find('a')
-            .attr('target', function() {
-                if (this.host !== location.host) {
-                    return '_blank';
-                } else {
-                    let outer_path: any = [
-                        'shared/',
-                        'share/',
-                        'club',
-                        'videos',
-                        'blog',
-                        'plan',
-                        'tour',
-                        'mobile',
-                        'security',
-                        'uservoice',
-                        'customers',
-                        'press',
-                        'help',
-                        'guide',
-                        'feedback',
-                        'about',
-                        'contact',
-                        'privacy',
-                        'terms'
-                    ].join(')|(/');
-                    outer_path = new RegExp('^(/' + outer_path + ')');
-                    if (outer_path.test(this.pathname)) {
+        this.zone.runOutsideAngular(() => {
+            this.elementRef.nativeElement.innerHTML = _value;
+            $(this.elementRef.nativeElement)
+                .find('a')
+                .attr('target', function() {
+                    if (this.host !== location.host) {
                         return '_blank';
+                    } else {
+                        let outer_path: any = [
+                            'shared/',
+                            'share/',
+                            'club',
+                            'videos',
+                            'blog',
+                            'plan',
+                            'tour',
+                            'mobile',
+                            'security',
+                            'uservoice',
+                            'customers',
+                            'press',
+                            'help',
+                            'guide',
+                            'feedback',
+                            'about',
+                            'contact',
+                            'privacy',
+                            'terms'
+                        ].join(')|(/');
+                        outer_path = new RegExp('^(/' + outer_path + ')');
+                        if (outer_path.test(this.pathname)) {
+                            return '_blank';
+                        }
                     }
-                }
-            });
+                });
+        });
     }
 
     ngOnInit() {
